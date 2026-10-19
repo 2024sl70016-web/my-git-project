@@ -1,1 +1,2 @@
 Hello, Git!
+This change was made in branch b1.
