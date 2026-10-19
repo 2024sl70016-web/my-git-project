@@ -1,0 +1,79 @@
+@HOST = 'localhost:8081'
+
+### Create a product
+POST https://{{HOST}}/api/products
+Content-Type: application/json
+
+{
+  "name": "Wireless Mouse",
+  "description": "Ergonomic wireless mouse with long battery life",
+  "price": 29.99,
+  "stockQuantity": 150
+}
+
+### Create another product
+POST https://{{HOST}}/api/products
+Content-Type: application/json
+
+{
+  "name": "Mechanical Keyboard",
+  "description": "Compact TKL mechanical keyboard with RGB lighting",
+  "price": 89.99,
+  "stockQuantity": 75
+}
+
+### Create product with minimal fields (no description)
+POST https://{{HOST}}/api/products
+Content-Type: application/json
+
+{
+  "name": "USB-C Cable",
+  "price": 9.99,
+  "stockQuantity": 500
+}
+
+### Get all products
+GET http://{{HOST}}/api/products
+
+### Search products by name
+GET http://{{HOST}}/api/products?name=mouse
+
+### Get product by ID
+GET http://{{HOST}}/api/products/1
+
+### Update a product
+PUT http://{{HOST}}/api/products/1
+Content-Type: application/json
+
+{
+  "name": "Wireless Mouse Pro",
+  "description": "Ergonomic wireless mouse with long battery life and silent clicks",
+  "price": 34.99,
+  "stockQuantity": 120
+}
+
+### Delete a product
+DELETE http://{{HOST}}/api/products/4
+
+### --- Validation error examples ---
+
+### Missing required fields (expect 400)
+POST http://{{HOST}}/api/products
+Content-Type: application/json
+
+{
+  "description": "No name or price"
+}
+
+### Negative price (expect 400)
+POST http://{{HOST}}/api/products
+Content-Type: application/json
+
+{
+  "name": "Bad Product",
+  "price": -5.00,
+  "stockQuantity": 10
+}
+
+### Product not found (expect 404)
+GET http://{{HOST}}/api/products/999

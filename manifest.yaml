@@ -1,0 +1,11 @@
+applications:
+  - name: product-api
+    memory: 1G
+    disk_quota: 512M
+    instances: 1
+    path: target/product-api-0.0.1-SNAPSHOT.jar
+    buildpacks:
+      - java_buildpack
+    env:
+      JBP_CONFIG_OPEN_JDK_JRE: '{ jre: { version: 17.+ } }'
+      JBP_CONFIG_THREAD_COUNT: '[ thread_count: 50 ]'
